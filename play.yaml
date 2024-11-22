@@ -1,0 +1,23 @@
+---
+-name: task for slave1
+hosts: Slave1
+become: true
+tasks:
+ - name: Install Apache2 on the Apache machine
+      apt:
+        name: apache2
+        state: present
+      when: "'apache' in group_names"
+      tags: apache
+
+-name: task for slave2
+hosts: Slave2
+become: true
+tasks:
+ - name: Install Nginx on the Nginx machine
+      apt:
+        name: nginx
+        state: present
+      when: "'nginx' in group_names"
+      tags: nginx
+
